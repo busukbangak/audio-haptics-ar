@@ -2461,6 +2461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 303699029}
   - component: {fileID: 303699028}
+  - component: {fileID: 303699030}
   - component: {fileID: 303699027}
   - component: {fileID: 303699026}
   - component: {fileID: 303699025}
@@ -2469,7 +2470,6 @@ GameObject:
   - component: {fileID: 303699033}
   - component: {fileID: 303699032}
   - component: {fileID: 303699031}
-  - component: {fileID: 303699030}
   m_Layer: 0
   m_Name: '[BuildingBlock] Cube'
   m_TagString: Untagged
@@ -2650,7 +2650,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3e9f05580909c43b237e59e99bfef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollisionSoundPlayer
-  audioSource: {fileID: 303699031}
 --- !u!82 &303699031
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2663,7 +2662,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 968e9cc212639834dab1d3083a848b14, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2781,7 +2780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.InteractableUnityEventWrapper
-  _interactableView: {fileID: 0}
+  _interactableView: {fileID: 751743923}
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
