@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.meta.xr.depthapi.urp": "https://github.com/oculus-samples/Unity-DepthAPI.git?path=/Packages/com.meta.xr.depthapi.urp",
     "com.meta.xr.sdk.all": "83.0.1",
     "com.unity.ai.navigation": "2.0.9",
     "com.unity.ide.visualstudio": "2.0.23",
