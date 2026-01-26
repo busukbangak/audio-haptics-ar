@@ -47,7 +47,7 @@ public class ViewManager : MonoBehaviour
         }
     }
 
-    public void Show<T>(bool isHidingAll = true) where T : View
+    public void Show<T>(bool isHidingAll = false) where T : View
     {
         if (isHidingAll) HideAll();
         _views[typeof(T)].Show();
@@ -65,4 +65,7 @@ public class ViewManager : MonoBehaviour
             view.Hide();
         }
     }
+
+    public void ShowPreparationView() => Show<PreparationView>();
+
 }
