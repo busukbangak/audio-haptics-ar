@@ -34,6 +34,9 @@ public class DataManager : MonoBehaviour
             return;
         }
 
+        string path = Path.Combine(Application.persistentDataPath, filename);
+        bool fileExists = File.Exists(path);
+
         // Header = Keys
         string header = string.Join(",", Data.Keys);
 
@@ -41,12 +44,17 @@ public class DataManager : MonoBehaviour
         List<string> values = new List<string>(Data.Values);
         string line = string.Join(",", values);
 
-        // CSV Text
-        string csv = header + "\n" + line;
-
-        // Save to file
-        string path = Path.Combine(Application.persistentDataPath, filename);
-        File.WriteAllText(path, csv, Encoding.UTF8);
+        // If file doesn't exist, create it with header
+        if (!fileExists)
+        {
+            string csv = header + "\n" + line;
+            File.WriteAllText(path, csv, Encoding.UTF8);
+        }
+        else
+        {
+            // File exists, append only the data line
+            File.AppendAllText(path, "\n" + line, Encoding.UTF8);
+        }
 
         Debug.Log("Data saved to: " + path);
     }
