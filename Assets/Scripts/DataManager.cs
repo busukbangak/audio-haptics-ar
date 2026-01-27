@@ -50,12 +50,4 @@ public class DataManager : MonoBehaviour
 
         Debug.Log("Data saved to: " + path);
     }
-
-    // TODO: Move this to corresponding View
-    public void LogDataConsent()
-    {
-        Log("isDataConsentGiven:value", "YES");
-        Log("isDataConsentGiven:timestamp", System.DateTime.Now.ToString());
-        ExportData();
-    }
 }
