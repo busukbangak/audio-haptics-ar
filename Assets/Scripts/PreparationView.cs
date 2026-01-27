@@ -1,5 +1,6 @@
 using System.Linq;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PreparationView : View
@@ -33,7 +34,7 @@ public class PreparationView : View
     private void ValidateGeneralDataStepContinueButtons()
     {
         bool isIdValid = int.TryParse(SubjectID.text, out int id) && id != 0;
-        bool isAgeValid = int.TryParse(Age.text, out int age) && age != 0;
+        bool isAgeValid = int.TryParse(Age.text, out int age) && age > 0;
         bool isGenderSelected = GenderToggleGroup.ActiveToggles().Any();
         bool isMusicExpSelected = MusicExperienceToggleGroup.ActiveToggles().Any();
         bool isXRExpSelected = XRExperienceToggleGroup.ActiveToggles().Any();
@@ -52,7 +53,7 @@ public class PreparationView : View
     {
         DataManager.Instance.Log("subjectId", SubjectID.text);
         DataManager.Instance.Log("age", Age.text);
-        DataManager.Instance.Log("gender", GenderToggleGroup.ActiveToggles().FirstOrDefault().name);
+        DataManager.Instance.Log("gender", GenderToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name);
         DataManager.Instance.Log("generalDataStepTimestamp", System.DateTime.Now.ToString("o"));
 
         StudyManager.Instance.SubjectID = int.Parse(SubjectID.text);
@@ -60,9 +61,10 @@ public class PreparationView : View
 
     public void OnGeneralQuestionsStepContinueButtonPressed()
     {
-        DataManager.Instance.Log("musicExperience", MusicExperienceToggleGroup.ActiveToggles().FirstOrDefault().name);
-        DataManager.Instance.Log("xrExperience", XRExperienceToggleGroup.ActiveToggles().FirstOrDefault().name);
+        DataManager.Instance.Log("musicExperience", MusicExperienceToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name);
+        DataManager.Instance.Log("xrExperience", XRExperienceToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name);
         DataManager.Instance.Log("generalQuestionsStepTimestamp", System.DateTime.Now.ToString("o"));
+
         DataManager.Instance.ExportData();
     }
 

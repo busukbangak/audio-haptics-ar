@@ -26,7 +26,7 @@ public class DataManager : MonoBehaviour
     }
 
 
-    public void ExportData(string filename = "study_data.csv")
+    public void ExportData(string filename = "studydata.csv")
     {
         if (Data == null || Data.Count == 0)
         {
