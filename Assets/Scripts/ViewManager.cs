@@ -2,11 +2,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using System;
+using UnityEngine.EventSystems;
 
 public abstract class View : MonoBehaviour
 {
     public UnityEvent OnShow;
     public UnityEvent OnHide;
+
 
     public virtual void Show()
     {
@@ -65,7 +67,7 @@ public class ViewManager : MonoBehaviour
             view.Hide();
         }
     }
-
+    
     public void ShowPreparationView() => Show<PreparationView>();
 
 }
