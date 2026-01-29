@@ -9,6 +9,8 @@ public class DataManager : MonoBehaviour
 
     public Dictionary<string, string> Data = new Dictionary<string, string>();
 
+    public string ExportFileName = "studydata.csv";
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -26,7 +28,7 @@ public class DataManager : MonoBehaviour
     }
 
 
-    public void ExportData(string filename = "studydata.csv")
+    public void ExportData()
     {
         if (Data == null || Data.Count == 0)
         {
@@ -34,7 +36,7 @@ public class DataManager : MonoBehaviour
             return;
         }
 
-        string path = Path.Combine(Application.persistentDataPath, filename);
+        string path = Path.Combine(Application.persistentDataPath, ExportFileName);
         bool fileExists = File.Exists(path);
 
         // Header = Keys
