@@ -2,14 +2,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
 
-[CreateAssetMenu(menuName = "Experiment/Condition")]
-public class Condition : ScriptableObject
-{
-    public string Name;
-    public int NumberOfTrials;
-    public AudioClip[] CubeAudioClips;
-}
-
 public class ExperimentManager : MonoBehaviour
 {
     public static ExperimentManager Instance { get; private set; }

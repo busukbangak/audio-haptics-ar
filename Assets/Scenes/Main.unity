@@ -55283,7 +55283,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bc55aaa32d72c4b82f98b6dd59dbf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExperimentManager
-  Conditions: []
+  Conditions:
+  - {fileID: 11400000, guid: bc4d8c8cc8098bf4a92b365bb2d75d40, type: 2}
+  - {fileID: 11400000, guid: b646d9773abac4d4bba8501c2c743d8c, type: 2}
+  - {fileID: 11400000, guid: 9f9fae2161c2aa44395808a07cf039f1, type: 2}
   Cubes: []
   OnExperimentStart:
     m_PersistentCalls:
