@@ -8,11 +8,14 @@ public class Cube : MonoBehaviour
 
     private InteractableUnityEventWrapper _interactableWrapper;
 
-    private void Start()
+    public bool IsInitialized { get; private set; } = false;
+
+    public void Initialize()
     {
         _audioSource = GetComponent<AudioSource>();
         _interactableWrapper = GetComponent<InteractableUnityEventWrapper>();
         _interactableWrapper.WhenSelect.AddListener(() => _audioSource.Play());
+        IsInitialized = true;
     }
 
     public void SetCollisionSound(AudioClip clip)

@@ -33,8 +33,14 @@ public class ExperimentManager : MonoBehaviour
         Instance = this;
     }
 
-    public void StartExperiment(int subjectID)
+    public void StartExperiment(int subjectID = -1)
     {
+        // If subjectID is -1, use the one from StudyManager
+        if (subjectID == -1)
+        {
+            subjectID = StudyManager.Instance.SubjectID;
+        }
+
         GenerateConditionOrder(subjectID);
 
         _currentConditionIndex = 0;
@@ -116,6 +122,7 @@ public class ExperimentManager : MonoBehaviour
         for (int i = 0; i < Cubes.Count; i++)
         {
             AudioClip clip = condition.CubeAudioClips[i];
+            if (!Cubes[i].IsInitialized) Cubes[i].Initialize();
             Cubes[i].SetCollisionSound(clip);
         }
     }
