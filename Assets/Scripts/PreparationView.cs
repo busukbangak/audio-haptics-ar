@@ -19,16 +19,21 @@ public class PreparationView : View
 
     public Toggle GeneralQuestionsStepContinueButton;
 
-    public void Start()
+    public void Awake()
     {
-        GenderToggleGroup.SetAllTogglesOff();
-        MusicExperienceToggleGroup.SetAllTogglesOff();
-        XRExperienceToggleGroup.SetAllTogglesOff();
+        ResetToggleGroups();
     }
 
     private void Update()
     {
         ValidateGeneralDataStepContinueButtons();
+    }
+
+    public void ResetToggleGroups()
+    {
+        GenderToggleGroup.SetAllTogglesOff();
+        MusicExperienceToggleGroup.SetAllTogglesOff();
+        XRExperienceToggleGroup.SetAllTogglesOff();
     }
 
     private void ValidateGeneralDataStepContinueButtons()

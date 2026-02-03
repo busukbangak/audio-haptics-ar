@@ -84,6 +84,8 @@ public class ExperimentManager : MonoBehaviour
         ConfigureCubes(condition);
 
         OnTrialStart?.Invoke(_currentTrialIndex);
+
+        DataManager.Instance.Log($"trialStartTimestamp_{GetCurrentConditionName()}_{GetCurrentTrialIndex()}", System.DateTime.Now.ToString("o"));
     }
 
     public void EndTrial()
@@ -97,6 +99,7 @@ public class ExperimentManager : MonoBehaviour
         if (_currentTrialIndex >= condition.NumberOfTrials)
         {
             OnConditionEnd?.Invoke(condition.Name); // Current condition ended
+            DataManager.Instance.Log($"trialEndTimestamp_{GetCurrentConditionName()}_{GetCurrentTrialIndex()}", System.DateTime.Now.ToString("o"));
 
             _currentTrialIndex = 0; // Reset for next condition
             _currentConditionIndex++; // Move to next condition
@@ -123,8 +126,35 @@ public class ExperimentManager : MonoBehaviour
         {
             AudioClip clip = condition.CubeAudioClips[i];
             if (!Cubes[i].IsInitialized) Cubes[i].Initialize();
+            Cubes[i].ResetPosition();
             Cubes[i].SetCollisionSound(clip);
         }
+    }
+
+    public int GetCurrentTrialRoundSummedUp()
+    {
+        // Sum trials from completed conditions + current trial
+        int round = 0;
+        for (int i = 0; i < _currentConditionIndex; i++)
+        {
+            round += _orderedConditions[i].NumberOfTrials;
+        }
+        return round + _currentTrialIndex;
+    }
+
+    public string GetCurrentConditionName()
+    {
+        return _orderedConditions[_currentConditionIndex].Name;
+    }
+
+    public int GetCurrentTrialIndex()
+    {
+        return _currentTrialIndex;
+    }
+
+    public void LogCubesSortedTimestamp()
+    {
+        DataManager.Instance.Log($"cubesSortedTimestamp_{GetCurrentConditionName()}_{GetCurrentTrialIndex()}", System.DateTime.Now.ToString("o"));
     }
 
 }

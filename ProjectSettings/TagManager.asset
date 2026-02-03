@@ -22,6 +22,7 @@ TagManager:
   - QDSUIBorderlessButton
   - QDSUIToggleSwitch
   - QDSUIDestructiveButton
+  - RespawnTrigger
   layers:
   - Default
   - TransparentFX

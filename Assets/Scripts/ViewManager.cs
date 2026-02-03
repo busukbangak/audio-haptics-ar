@@ -72,4 +72,8 @@ public class ViewManager : MonoBehaviour
 
     public void ShowTutorialView() => Show<TutorialView>();
 
+    public void ShowExperimentView() => Show<ExperimentView>();
+
+    public void ShowQuestionnaireView() => Show<QuestionnaireView>();
+
 }
