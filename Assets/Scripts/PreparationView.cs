@@ -59,7 +59,6 @@ public class PreparationView : View
         DataManager.Instance.Log("subjectId", SubjectID.text);
         DataManager.Instance.Log("age", Age.text);
         DataManager.Instance.Log("gender", GenderToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name);
-        DataManager.Instance.Log("generalDataStepTimestamp", System.DateTime.Now.ToString("o"));
 
         StudyManager.Instance.SubjectID = int.Parse(SubjectID.text);
     }
@@ -68,9 +67,6 @@ public class PreparationView : View
     {
         DataManager.Instance.Log("musicExperience", MusicExperienceToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name);
         DataManager.Instance.Log("xrExperience", XRExperienceToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name);
-        DataManager.Instance.Log("generalQuestionsStepTimestamp", System.DateTime.Now.ToString("o"));
-
-        DataManager.Instance.ExportData();
     }
 
     public void IncreaseSubjectId()

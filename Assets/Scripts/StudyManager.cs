@@ -35,6 +35,7 @@ public class StudyManager : MonoBehaviour
 
     private void Start()
     {
+        DataManager.Instance.Log("studyStartTimestamp", System.DateTime.Now.ToString("o"));
         EnterStep(CurrentStepIndex);
         Debug.Log($"Study started with step: {_currentStep.Name}");
     }
@@ -55,6 +56,7 @@ public class StudyManager : MonoBehaviour
         if (CurrentStepIndex >= Steps.Count)
         {
             Debug.Log("Study finished");
+            OnStudyFinished();
             return;
         }
 
@@ -86,5 +88,11 @@ public class StudyManager : MonoBehaviour
     {
         Debug.Log($"Exit Step: {_currentStep.Name}");
         _currentStep.OnExit?.Invoke();
+    }
+
+    public void OnStudyFinished()
+    {
+        DataManager.Instance.Log("studyEndTimestamp", System.DateTime.Now.ToString("o"));
+        DataManager.Instance.ExportData();
     }
 }

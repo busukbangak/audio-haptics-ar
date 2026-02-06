@@ -78,4 +78,6 @@ public class ViewManager : MonoBehaviour
 
     public void ShowPostQuestionnaireView() => Show<PostQuestionnaireView>();
 
+    public void ShowDebriefingView() => Show<DebriefingView>();
+
 }

@@ -7,4 +7,9 @@ public class ExperimentView : View
     {
         RoundTitleText.text = "Runde " + (ExperimentManager.Instance.GetCurrentTrialRoundSummedUp() + 1);
     }
+
+    public void OnCubeOrderConfirmed()
+    {
+        DataManager.Instance.Log("cubeOrderConfirmedTimestamp", System.DateTime.Now.ToString("o"));
+    }
 }
