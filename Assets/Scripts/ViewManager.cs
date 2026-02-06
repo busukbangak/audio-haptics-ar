@@ -76,4 +76,6 @@ public class ViewManager : MonoBehaviour
 
     public void ShowQuestionnaireView() => Show<QuestionnaireView>();
 
+    public void ShowPostQuestionnaireView() => Show<PostQuestionnaireView>();
+
 }

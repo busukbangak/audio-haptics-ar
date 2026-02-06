@@ -1,5 +1,6 @@
 
 using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class QuestionnaireView : View
@@ -10,7 +11,7 @@ public class QuestionnaireView : View
 
     public ToggleGroup DifferencesToggleGroup;
 
-    public ToggleGroup CertaintyToggleGroup;
+    public ToggleGroup ConfidenceToggleGroup;
 
     public ToggleGroup IntuitionToggleGroup;
 
@@ -20,7 +21,7 @@ public class QuestionnaireView : View
 
     public Toggle DifferencesContinueButton;
 
-    public Toggle CertaintyContinueButton;
+    public Toggle ConfidenceContinueButton;
 
     public Toggle IntuitionContinueButton;
 
@@ -36,11 +37,30 @@ public class QuestionnaireView : View
 
     public void ResetToggleGroups()
     {
-        PerceivedWeightToggleGroup.SetAllTogglesOff();
-        RealismToggleGroup.SetAllTogglesOff();
-        DifferencesToggleGroup.SetAllTogglesOff();
-        CertaintyToggleGroup.SetAllTogglesOff();
-        IntuitionToggleGroup.SetAllTogglesOff();
+        foreach (var toggle in PerceivedWeightToggleGroup.GetComponentsInChildren<Toggle>())
+        {
+            toggle.isOn = false;
+        }
+
+        foreach (var toggle in RealismToggleGroup.GetComponentsInChildren<Toggle>())
+        {
+            toggle.isOn = false;
+        }
+
+        foreach (var toggle in DifferencesToggleGroup.GetComponentsInChildren<Toggle>())
+        {
+            toggle.isOn = false;
+        }
+
+        foreach (var toggle in ConfidenceToggleGroup.GetComponentsInChildren<Toggle>())
+        {
+            toggle.isOn = false;
+        }
+
+        foreach (var toggle in IntuitionToggleGroup.GetComponentsInChildren<Toggle>())
+        {
+            toggle.isOn = false;
+        }
     }
 
     private void ValidateQuestionnaireContinueButtons()
@@ -48,13 +68,13 @@ public class QuestionnaireView : View
         bool isPerceivedWeightSelected = PerceivedWeightToggleGroup.ActiveToggles().Any();
         bool isRealismSelected = RealismToggleGroup.ActiveToggles().Any();
         bool isDifferencesSelected = DifferencesToggleGroup.ActiveToggles().Any();
-        bool isCertaintySelected = CertaintyToggleGroup.ActiveToggles().Any();
+        bool isConfidenceSelected = ConfidenceToggleGroup.ActiveToggles().Any();
         bool isIntuitionSelected = IntuitionToggleGroup.ActiveToggles().Any();
 
         PerceivedWeightContinueButton.interactable = isPerceivedWeightSelected;
         RealismContinueButton.interactable = isRealismSelected;
         DifferencesContinueButton.interactable = isDifferencesSelected;
-        CertaintyContinueButton.interactable = isCertaintySelected;
+        ConfidenceContinueButton.interactable = isConfidenceSelected;
         IntuitionContinueButton.interactable = isIntuitionSelected;
     }
 
@@ -85,12 +105,12 @@ public class QuestionnaireView : View
         DataManager.Instance.Log(logKey, value);
     }
 
-    public void OnCertaintyContinueButtonPressed()
+    public void OnConfidenceContinueButtonPressed()
     {
         string conditionName = ExperimentManager.Instance.GetCurrentConditionName();
         int trialIndex = ExperimentManager.Instance.GetCurrentTrialIndex();
-        string logKey = $"certainty_{conditionName}_{trialIndex}";
-        string value = CertaintyToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name;
+        string logKey = $"confidence_{conditionName}_{trialIndex}";
+        string value = ConfidenceToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name;
         DataManager.Instance.Log(logKey, value);
     }
 

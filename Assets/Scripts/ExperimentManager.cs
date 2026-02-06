@@ -33,14 +33,10 @@ public class ExperimentManager : MonoBehaviour
         Instance = this;
     }
 
-    public void StartExperiment(int subjectID = -1)
-    {
-        // If subjectID is -1, use the one from StudyManager
-        if (subjectID == -1)
-        {
-            subjectID = StudyManager.Instance.SubjectID;
-        }
+    public void StartExperiment() => StartExperiment(StudyManager.Instance.SubjectID);
 
+    public void StartExperiment(int subjectID)
+    {
         GenerateConditionOrder(subjectID);
 
         _currentConditionIndex = 0;
