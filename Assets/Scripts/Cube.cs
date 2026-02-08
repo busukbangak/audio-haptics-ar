@@ -37,7 +37,18 @@ public class Cube : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Don't play sound if colliding with another cube
+        if (collision.gameObject.CompareTag("Cube"))
+        {
+            return;
+        }
+
         _audioSource.Play();
+    }
+
+    public void SetVolume(float volume)
+    {
+        _audioSource.volume = volume;
     }
 
     public void ResetPosition()

@@ -23,6 +23,7 @@ TagManager:
   - QDSUIToggleSwitch
   - QDSUIDestructiveButton
   - RespawnTrigger
+  - Cube
   layers:
   - Default
   - TransparentFX
