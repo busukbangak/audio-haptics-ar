@@ -66,4 +66,9 @@ public class Cube : MonoBehaviour
             ResetPosition();
         }
     }
+
+    public string GetCurrentAudioClipName()
+    {
+        return _audioSource.clip != null ? _audioSource.clip.name : "NoClip";
+    }
 }

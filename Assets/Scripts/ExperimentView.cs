@@ -10,6 +10,7 @@ public class ExperimentView : View
 
     public void OnCubeOrderConfirmed()
     {
-        DataManager.Instance.Log("cubeOrderConfirmedTimestamp", System.DateTime.Now.ToString("o"));
+        ExperimentManager.Instance.LogCubesSortedPositions();
+        ExperimentManager.Instance.LogCubesSortedTimestamp();
     }
 }

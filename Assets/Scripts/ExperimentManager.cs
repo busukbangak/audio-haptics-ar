@@ -67,6 +67,20 @@ public class ExperimentManager : MonoBehaviour
             _orderedConditions.RemoveAt(0);
             _orderedConditions.Add(first);
         }
+
+        LogConditionOrder();
+    }
+
+    public void LogConditionOrder()
+    {
+        List<string> conditionNames = new List<string>();
+
+        foreach (var condition in _orderedConditions)
+        {
+            conditionNames.Add(condition.Name);
+        }
+
+        DataManager.Instance.Log("conditionOrder", string.Join(">", conditionNames));
     }
 
     void StartCurrentTrial()
@@ -83,6 +97,9 @@ public class ExperimentManager : MonoBehaviour
         OnTrialStart?.Invoke(_currentTrialIndex);
 
         DataManager.Instance.Log($"trialStartTimestamp_{GetCurrentConditionName()}_{GetCurrentTrialIndex()}", System.DateTime.Now.ToString("o"));
+
+        // Log unsorted positions (initial state after shuffle)
+        LogCubesUnsortedPositions();
     }
 
     public void EndTrial()
@@ -128,6 +145,38 @@ public class ExperimentManager : MonoBehaviour
             if (!Cubes[i].IsInitialized) Cubes[i].Initialize();
             Cubes[i].ResetPosition();
             Cubes[i].SetCollisionSound(clip);
+        }
+    }
+
+    public void LogCubesUnsortedPositions()
+    {
+        // Sort cubes by their x-position (left to right) to get their initial spatial order
+        var cubesByPosition = Cubes.OrderBy(cube => cube.transform.position.x).ToList();
+
+        for (int i = 0; i < cubesByPosition.Count; i++)
+        {
+            string clipName = cubesByPosition[i].GetCurrentAudioClipName();
+
+            string logKey = $"cubesUnsortedPositions_{GetCurrentConditionName()}_{GetCurrentTrialIndex()}_{i + 1}";
+            string logValue = clipName;
+
+            DataManager.Instance.Log(logKey, logValue);
+        }
+    }
+
+    public void LogCubesSortedPositions()
+    {
+        // Sort cubes by their x-position (left to right)
+        var sortedCubes = Cubes.OrderBy(cube => cube.transform.position.x).ToList();
+
+        for (int i = 0; i < sortedCubes.Count; i++)
+        {
+            string clipName = sortedCubes[i].GetCurrentAudioClipName();
+
+            string logKey = $"cubesSortedPositions_{GetCurrentConditionName()}_{GetCurrentTrialIndex()}_{i + 1}";
+            string logValue = clipName;
+
+            DataManager.Instance.Log(logKey, logValue);
         }
     }
 
