@@ -15,8 +15,8 @@ MonoBehaviour:
   Name: Pitch
   NumberOfTrials: 1
   CubeAudioClips:
-  - {fileID: 8300000, guid: 06cea60e67fe2904ea6e3b53393163fd, type: 3}
-  - {fileID: 8300000, guid: 1705d3a999410d1438c103f5243b925e, type: 3}
-  - {fileID: 8300000, guid: b489606ba6b1f5d428bcfced5157267d, type: 3}
-  - {fileID: 8300000, guid: f1e131790cdc1224eabd1b38d6934a34, type: 3}
-  - {fileID: 8300000, guid: 528cfc4175068fa4e85aacdbd0b1e7ad, type: 3}
+  - {fileID: 8300000, guid: 2ac1aa8fba0391947bee37ed3ca8f6ee, type: 3}
+  - {fileID: 8300000, guid: dce2c29fb5cddcc42bcac19eb6b24a4a, type: 3}
+  - {fileID: 8300000, guid: 30309b11df6bf9140a78cb2c3b519de6, type: 3}
+  - {fileID: 8300000, guid: 2066d948b6cc0a84d9d2df38e3e84d7a, type: 3}
+  - {fileID: 8300000, guid: dcb0552c912b10c4bb90bfa4eb67e544, type: 3}

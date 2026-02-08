@@ -122,25 +122,12 @@ public class ExperimentManager : MonoBehaviour
         // Shuffle the audio clips before assigning
         AudioClip[] shuffledClips = ShuffleArray(condition.CubeAudioClips);
 
-        // Prepare volume levels if this is the Loudness condition
-        float[] volumes = null;
-        if (condition.Name == "Loudness")
-        {
-            volumes = ShuffleArray(new float[] { 1f, 0.7f, 0.5f, 0.35f, 0.2f });
-        }
-
         for (int i = 0; i < Cubes.Count; i++)
         {
             AudioClip clip = shuffledClips[i];
             if (!Cubes[i].IsInitialized) Cubes[i].Initialize();
             Cubes[i].ResetPosition();
             Cubes[i].SetCollisionSound(clip);
-
-            // Set volume for Loudness condition
-            if (volumes != null)
-            {
-                Cubes[i].SetVolume(volumes[i]);
-            }
         }
     }
 

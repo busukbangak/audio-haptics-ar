@@ -14,4 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Condition
   Name: Timbre
   NumberOfTrials: 1
-  CubeAudioClips: []
+  CubeAudioClips:
+  - {fileID: 8300000, guid: 30309b11df6bf9140a78cb2c3b519de6, type: 3}
+  - {fileID: 8300000, guid: d08a54e947352db4da4d40161cc6bbf6, type: 3}
+  - {fileID: 8300000, guid: 743767fedb8801b4e922274393b9fea8, type: 3}
+  - {fileID: 8300000, guid: c6f67f42b704c554486a038aa4fdeeef, type: 3}
+  - {fileID: 8300000, guid: 68f1c5c755bb5ec4dbb944fae578100b, type: 3}

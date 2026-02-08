@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Loudness
   m_EditorClassIdentifier: Assembly-CSharp::Condition
   Name: Loudness
-  NumberOfTrials: 3
+  NumberOfTrials: 1
   CubeAudioClips:
-  - {fileID: 8300000, guid: b489606ba6b1f5d428bcfced5157267d, type: 3}
-  - {fileID: 8300000, guid: b489606ba6b1f5d428bcfced5157267d, type: 3}
-  - {fileID: 8300000, guid: b489606ba6b1f5d428bcfced5157267d, type: 3}
-  - {fileID: 8300000, guid: b489606ba6b1f5d428bcfced5157267d, type: 3}
-  - {fileID: 8300000, guid: b489606ba6b1f5d428bcfced5157267d, type: 3}
+  - {fileID: 8300000, guid: 30309b11df6bf9140a78cb2c3b519de6, type: 3}
+  - {fileID: 8300000, guid: 9316a2d0e18e07a4cb8b0cd8d2032cf9, type: 3}
+  - {fileID: 8300000, guid: 0f506eb431ae30c4b842f52d77ed09c7, type: 3}
+  - {fileID: 8300000, guid: 99c71cdbc8bcf8a48bd6ab63de53deac, type: 3}
+  - {fileID: 8300000, guid: 09ef19a235218a4418e3385330e502b7, type: 3}
