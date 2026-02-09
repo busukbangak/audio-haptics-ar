@@ -5,6 +5,7 @@ using UnityEngine;
 public class Condition : ScriptableObject
 {
     public string Name;
+    public string DisplayName;
     public int NumberOfTrials;
     public AudioClip[] CubeAudioClips;
 }

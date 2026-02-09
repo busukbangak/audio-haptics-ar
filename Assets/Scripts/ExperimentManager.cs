@@ -219,11 +219,11 @@ public class ExperimentManager : MonoBehaviour
             string rangeText;
             if (condition.NumberOfTrials == 1)
             {
-                rangeText = $"Runde {startRound} {condition.Name}";
+                rangeText = $"Runde {startRound} {condition.DisplayName}";
             }
             else
             {
-                rangeText = $"Runde {startRound}-{endRound} {condition.Name}";
+                rangeText = $"Runde {startRound}-{endRound} {condition.DisplayName}";
             }
 
             conditionRanges.Add(rangeText);

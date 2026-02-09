@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Pitch
   m_EditorClassIdentifier: Assembly-CSharp::Condition
   Name: Pitch
+  DisplayName: "Tonh\xF6he"
   NumberOfTrials: 1
   CubeAudioClips:
   - {fileID: 8300000, guid: 2ac1aa8fba0391947bee37ed3ca8f6ee, type: 3}
