@@ -180,6 +180,11 @@ public class ExperimentManager : MonoBehaviour
         }
     }
 
+    public void LogCubesSortedTimestamp()
+    {
+        DataManager.Instance.Log($"cubesSortedTimestamp_{GetCurrentConditionName()}_{GetCurrentTrialIndex()}", System.DateTime.Now.ToString("o"));
+    }
+
     public int GetCurrentTrialRoundSummedUp()
     {
         // Sum trials from completed conditions + current trial
@@ -201,9 +206,31 @@ public class ExperimentManager : MonoBehaviour
         return _currentTrialIndex;
     }
 
-    public void LogCubesSortedTimestamp()
+    public string GetConditionRangeText()
     {
-        DataManager.Instance.Log($"cubesSortedTimestamp_{GetCurrentConditionName()}_{GetCurrentTrialIndex()}", System.DateTime.Now.ToString("o"));
+        int roundCounter = 1;
+        List<string> conditionRanges = new List<string>();
+
+        foreach (var condition in _orderedConditions)
+        {
+            int startRound = roundCounter;
+            int endRound = roundCounter + condition.NumberOfTrials - 1;
+
+            string rangeText;
+            if (condition.NumberOfTrials == 1)
+            {
+                rangeText = $"Runde {startRound} {condition.Name}";
+            }
+            else
+            {
+                rangeText = $"Runde {startRound}-{endRound} {condition.Name}";
+            }
+
+            conditionRanges.Add(rangeText);
+            roundCounter += condition.NumberOfTrials;
+        }
+
+        return string.Join(" > ", conditionRanges);
     }
 
     public T[] ShuffleArray<T>(T[] array)

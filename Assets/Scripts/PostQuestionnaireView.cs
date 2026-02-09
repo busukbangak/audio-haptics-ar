@@ -24,6 +24,12 @@ public class PostQuestionnaireView : View
 
     public Toggle PreferenceContinueButton;
 
+    public TMPro.TextMeshProUGUI MappingConditionHintText;
+
+    public TMPro.TextMeshProUGUI UsefulnessConditionHintText;
+
+    public TMPro.TextMeshProUGUI PreferenceConditionHintText;
+
     public void Awake()
     {
         ResetToggleGroups();
@@ -32,6 +38,15 @@ public class PostQuestionnaireView : View
     public void Update()
     {
         ValidatePostQuestionnaireContinueButtons();
+    }
+
+    public void UpdateConditionHintText()
+    {
+        string conditionRangeText = ExperimentManager.Instance.GetConditionRangeText();
+
+        MappingConditionHintText.text = conditionRangeText;
+        UsefulnessConditionHintText.text = conditionRangeText;
+        PreferenceConditionHintText.text = conditionRangeText;
     }
 
     public void ResetToggleGroups()
