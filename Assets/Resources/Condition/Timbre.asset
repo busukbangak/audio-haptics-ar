@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Condition
   Name: Timbre
   DisplayName: Klangfarbe
-  NumberOfTrials: 1
+  NumberOfTrials: 3
   CubeAudioClips:
   - {fileID: 8300000, guid: 30309b11df6bf9140a78cb2c3b519de6, type: 3}
   - {fileID: 8300000, guid: d08a54e947352db4da4d40161cc6bbf6, type: 3}

@@ -6,8 +6,6 @@ public class Cube : MonoBehaviour
 {
     private AudioSource _audioSource;
 
-    private InteractableUnityEventWrapper _interactableWrapper;
-
     private Vector3 _initialPosition;
 
     private Quaternion _initialRotation;
@@ -19,9 +17,7 @@ public class Cube : MonoBehaviour
     public void Initialize()
     {
         _audioSource = GetComponent<AudioSource>();
-        _interactableWrapper = GetComponent<InteractableUnityEventWrapper>();
         _rigidbody = GetComponent<Rigidbody>();
-        _interactableWrapper.WhenSelect.AddListener(() => _audioSource.Play());
 
         // Store initial transform
         _initialPosition = transform.position;
