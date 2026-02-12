@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Condition
   Name: Loudness
   DisplayName: "Lautst\xE4rke"
-  NumberOfTrials: 3
+  NumberOfTrials: 1
   CubeAudioClips:
   - {fileID: 8300000, guid: 30309b11df6bf9140a78cb2c3b519de6, type: 3}
   - {fileID: 8300000, guid: 9316a2d0e18e07a4cb8b0cd8d2032cf9, type: 3}
