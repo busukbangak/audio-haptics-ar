@@ -96,7 +96,7 @@ public class ExperimentManager : MonoBehaviour
 
         OnTrialStart?.Invoke(_currentTrialIndex);
 
-        DataManager.Instance.Log($"trialStartTimestamp_{GetCurrentConditionName()}_{GetCurrentTrialIndex()}", System.DateTime.Now.ToString("o"));
+        DataManager.Instance.Log($"trialStartTimestamp_{GetCurrentConditionStringIndex()}_{GetCurrentTrialStringIndex()}", System.DateTime.Now.ToString("o"));
 
         // Log unsorted positions (initial state after shuffle)
         LogCubesUnsortedPositions();
@@ -113,7 +113,7 @@ public class ExperimentManager : MonoBehaviour
         if (_currentTrialIndex >= condition.NumberOfTrials)
         {
             OnConditionEnd?.Invoke(condition.Name); // Current condition ended
-            DataManager.Instance.Log($"trialEndTimestamp_{GetCurrentConditionName()}_{GetCurrentTrialIndex()}", System.DateTime.Now.ToString("o"));
+            DataManager.Instance.Log($"trialEndTimestamp_{GetCurrentConditionStringIndex()}_{GetCurrentTrialStringIndex()}", System.DateTime.Now.ToString("o"));
 
             _currentTrialIndex = 0; // Reset for next condition
             _currentConditionIndex++; // Move to next condition
@@ -157,7 +157,7 @@ public class ExperimentManager : MonoBehaviour
         {
             string clipName = cubesByPosition[i].GetCurrentAudioClipName();
 
-            string logKey = $"cubesUnsortedPositions_{GetCurrentConditionName()}_{GetCurrentTrialIndex()}_{i + 1}";
+            string logKey = $"cubesUnsortedPositions_{GetCurrentConditionStringIndex()}_{GetCurrentTrialStringIndex()}_{i + 1}";
             string logValue = clipName;
 
             DataManager.Instance.Log(logKey, logValue);
@@ -173,7 +173,7 @@ public class ExperimentManager : MonoBehaviour
         {
             string clipName = sortedCubes[i].GetCurrentAudioClipName();
 
-            string logKey = $"cubesSortedPositions_{GetCurrentConditionName()}_{GetCurrentTrialIndex()}_{i + 1}";
+            string logKey = $"cubesSortedPositions_{GetCurrentConditionStringIndex()}_{GetCurrentTrialStringIndex()}_{i + 1}";
             string logValue = clipName;
 
             DataManager.Instance.Log(logKey, logValue);
@@ -182,7 +182,7 @@ public class ExperimentManager : MonoBehaviour
 
     public void LogCubesSortedTimestamp()
     {
-        DataManager.Instance.Log($"cubesSortedTimestamp_{GetCurrentConditionName()}_{GetCurrentTrialIndex()}", System.DateTime.Now.ToString("o"));
+        DataManager.Instance.Log($"cubesSortedTimestamp_{GetCurrentConditionStringIndex()}_{GetCurrentTrialStringIndex()}", System.DateTime.Now.ToString("o"));
     }
 
     public int GetCurrentTrialRoundSummedUp()
@@ -196,14 +196,14 @@ public class ExperimentManager : MonoBehaviour
         return round + _currentTrialIndex;
     }
 
-    public string GetCurrentConditionName()
+    public string GetCurrentConditionStringIndex()
     {
-        return _orderedConditions[_currentConditionIndex].Name;
+        return "C" + (_currentConditionIndex + 1);
     }
 
-    public int GetCurrentTrialIndex()
+    public string GetCurrentTrialStringIndex()
     {
-        return _currentTrialIndex;
+        return "T" + (_currentTrialIndex + 1);
     }
 
     public string GetConditionRangeText()

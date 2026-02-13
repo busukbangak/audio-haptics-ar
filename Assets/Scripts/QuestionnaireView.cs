@@ -75,9 +75,9 @@ public class QuestionnaireView : View
 
     public void OnPerceivedWeightContinueButtonPressed()
     {
-        string conditionName = ExperimentManager.Instance.GetCurrentConditionName();
-        int trialIndex = ExperimentManager.Instance.GetCurrentTrialIndex();
-        string logKey = $"perceivedWeight_{conditionName}_{trialIndex}";
+        string conditionStringIndex = ExperimentManager.Instance.GetCurrentConditionStringIndex();
+        string trialStringIndex = ExperimentManager.Instance.GetCurrentTrialStringIndex();
+        string logKey = $"perceivedWeight_{conditionStringIndex}_{trialStringIndex}";
 
         Toggle selectedToggle = PerceivedWeightToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn);
         DataManager.Instance.Log(logKey, selectedToggle.name);
@@ -87,9 +87,9 @@ public class QuestionnaireView : View
 
     public void OnRealismContinueButtonPressed()
     {
-        string conditionName = ExperimentManager.Instance.GetCurrentConditionName();
-        int trialIndex = ExperimentManager.Instance.GetCurrentTrialIndex();
-        string logKey = $"realism_{conditionName}_{trialIndex}";
+        string conditionStringIndex = ExperimentManager.Instance.GetCurrentConditionStringIndex();
+        string trialStringIndex = ExperimentManager.Instance.GetCurrentTrialStringIndex();
+        string logKey = $"realism_{conditionStringIndex}_{trialStringIndex}";
 
         Toggle selectedToggle = RealismToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn);
         DataManager.Instance.Log(logKey, selectedToggle.name);
@@ -99,9 +99,9 @@ public class QuestionnaireView : View
 
     public void OnDifferencesContinueButtonPressed()
     {
-        string conditionName = ExperimentManager.Instance.GetCurrentConditionName();
-        int trialIndex = ExperimentManager.Instance.GetCurrentTrialIndex();
-        string logKey = $"differences_{conditionName}_{trialIndex}";
+        string conditionStringIndex = ExperimentManager.Instance.GetCurrentConditionStringIndex();
+        string trialStringIndex = ExperimentManager.Instance.GetCurrentTrialStringIndex();
+        string logKey = $"differences_{conditionStringIndex}_{trialStringIndex}";
 
         Toggle selectedToggle = DifferencesToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn);
         DataManager.Instance.Log(logKey, selectedToggle.name);
@@ -111,9 +111,9 @@ public class QuestionnaireView : View
 
     public void OnConfidenceContinueButtonPressed()
     {
-        string conditionName = ExperimentManager.Instance.GetCurrentConditionName();
-        int trialIndex = ExperimentManager.Instance.GetCurrentTrialIndex();
-        string logKey = $"confidence_{conditionName}_{trialIndex}";
+        string conditionStringIndex = ExperimentManager.Instance.GetCurrentConditionStringIndex();
+        string trialStringIndex = ExperimentManager.Instance.GetCurrentTrialStringIndex();
+        string logKey = $"confidence_{conditionStringIndex}_{trialStringIndex}";
 
         Toggle selectedToggle = ConfidenceToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn);
         DataManager.Instance.Log(logKey, selectedToggle.name);
@@ -123,9 +123,9 @@ public class QuestionnaireView : View
 
     public void OnIntuitionContinueButtonPressed()
     {
-        string conditionName = ExperimentManager.Instance.GetCurrentConditionName();
-        int trialIndex = ExperimentManager.Instance.GetCurrentTrialIndex();
-        string logKey = $"intuition_{conditionName}_{trialIndex}";
+        string conditionStringIndex = ExperimentManager.Instance.GetCurrentConditionStringIndex();
+        string trialStringIndex = ExperimentManager.Instance.GetCurrentTrialStringIndex();
+        string logKey = $"intuition_{conditionStringIndex}_{trialStringIndex}";
 
         Toggle selectedToggle = IntuitionToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn);
         DataManager.Instance.Log(logKey, selectedToggle.name);
