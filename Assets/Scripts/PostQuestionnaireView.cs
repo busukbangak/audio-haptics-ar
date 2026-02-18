@@ -1,43 +1,71 @@
 
+using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PostQuestionnaireView : View
 {
+    // Mapping Toggle Groups
+    public Transform MappingToggleGroupsContainer;
     public ToggleGroup MappingPitchToggleGroup;
-
     public ToggleGroup MappingLoudnessToggleGroup;
-
     public ToggleGroup MappingTimbreToggleGroup;
 
+    // Usefulness Toggle Groups
+    public Transform UsefulnessToggleGroupsContainer;
     public ToggleGroup UsefulnessPitchToggleGroup;
-
     public ToggleGroup UsefulnessLoudnessToggleGroup;
-
     public ToggleGroup UsefulnessTimbreToggleGroup;
 
     public ToggleGroup PreferenceToggleGroup;
 
     public Toggle MappingContinueButton;
-
     public Toggle UsefulnessContinueButton;
-
     public Toggle PreferenceContinueButton;
 
     public TMPro.TextMeshProUGUI MappingConditionHintText;
-
     public TMPro.TextMeshProUGUI UsefulnessConditionHintText;
-
     public TMPro.TextMeshProUGUI PreferenceConditionHintText;
+
+    private Dictionary<string, ToggleGroup> _mappingToggleGroups;
+    private Dictionary<string, ToggleGroup> _usefulnessToggleGroups;
+    private List<string> _orderedConditionNames;
 
     public void Awake()
     {
-        ResetToggleGroups();
+        _mappingToggleGroups = new Dictionary<string, ToggleGroup>
+        {
+            { "Pitch", MappingPitchToggleGroup },
+            { "Loudness", MappingLoudnessToggleGroup },
+            { "Timbre", MappingTimbreToggleGroup }
+        };
+
+        _usefulnessToggleGroups = new Dictionary<string, ToggleGroup>
+        {
+            { "Pitch", UsefulnessPitchToggleGroup },
+            { "Loudness", UsefulnessLoudnessToggleGroup },
+            { "Timbre", UsefulnessTimbreToggleGroup }
+        };
     }
 
     public void Update()
     {
         ValidatePostQuestionnaireContinueButtons();
+    }
+
+    public void InitializePostQuestionnaire()
+    {
+        UpdateConditionOrder();
+        UpdateConditionHintText();
+        UpdateToggleGroupOrder();
+        ResetToggleGroups();
+    }
+
+    public void UpdateConditionOrder()
+    {
+        var orderedConditions = ExperimentManager.Instance.GetOrderedConditions();
+        _orderedConditionNames = orderedConditions.Select(c => c.Name).ToList();
     }
 
     public void UpdateConditionHintText()
@@ -47,6 +75,47 @@ public class PostQuestionnaireView : View
         MappingConditionHintText.text = conditionRangeText;
         UsefulnessConditionHintText.text = conditionRangeText;
         PreferenceConditionHintText.text = conditionRangeText;
+    }
+
+    public void UpdateToggleGroupOrder()
+    {
+        var orderedMappingGroups = GetOrderedMappingToggleGroups();
+        for (int i = 0; i < orderedMappingGroups.Count; i++)
+        {
+            orderedMappingGroups[i].transform.SetSiblingIndex(i);
+        }
+
+        var orderedUsefulnessGroups = GetOrderedUsefulnessToggleGroups();
+        for (int i = 0; i < orderedUsefulnessGroups.Count; i++)
+        {
+            orderedUsefulnessGroups[i].transform.SetSiblingIndex(i);
+        }
+    }
+
+    private List<ToggleGroup> GetOrderedMappingToggleGroups()
+    {
+        List<ToggleGroup> orderedGroups = new List<ToggleGroup>();
+        foreach (string conditionName in _orderedConditionNames)
+        {
+            if (_mappingToggleGroups.ContainsKey(conditionName))
+            {
+                orderedGroups.Add(_mappingToggleGroups[conditionName]);
+            }
+        }
+        return orderedGroups;
+    }
+
+    private List<ToggleGroup> GetOrderedUsefulnessToggleGroups()
+    {
+        List<ToggleGroup> orderedGroups = new List<ToggleGroup>();
+        foreach (string conditionName in _orderedConditionNames)
+        {
+            if (_usefulnessToggleGroups.ContainsKey(conditionName))
+            {
+                orderedGroups.Add(_usefulnessToggleGroups[conditionName]);
+            }
+        }
+        return orderedGroups;
     }
 
     public void ResetToggleGroups()
@@ -76,32 +145,29 @@ public class PostQuestionnaireView : View
 
     public void OnMappingContinueButtonPressed()
     {
-        string logKey = "mapping_pitch";
-        string value = MappingPitchToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name;
-        DataManager.Instance.Log(logKey, value);
+        var orderedGroups = GetOrderedMappingToggleGroups();
 
-        logKey = "mapping_loudness";
-        value = MappingLoudnessToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name;
-        DataManager.Instance.Log(logKey, value);
+        for (int i = 0; i < _orderedConditionNames.Count && i < orderedGroups.Count; i++)
+        {
+            string logKey = $"mapping_C{i + 1}";
+            string value = orderedGroups[i].GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name;
 
-        logKey = "mapping_timbre";
-        value = MappingTimbreToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name;
-        DataManager.Instance.Log(logKey, value);
+            DataManager.Instance.Log(logKey, value);
+
+        }
     }
 
     public void OnUsefulnessContinueButtonPressed()
     {
-        string logKey = "usefulness_pitch";
-        string value = UsefulnessPitchToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name;
-        DataManager.Instance.Log(logKey, value);
+        var orderedGroups = GetOrderedUsefulnessToggleGroups();
 
-        logKey = "usefulness_loudness";
-        value = UsefulnessLoudnessToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name;
-        DataManager.Instance.Log(logKey, value);
+        for (int i = 0; i < _orderedConditionNames.Count && i < orderedGroups.Count; i++)
+        {
+            string logKey = $"usefulness_C{i + 1}";
+            string value = orderedGroups[i].GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name;
 
-        logKey = "usefulness_timbre";
-        value = UsefulnessTimbreToggleGroup.GetComponentsInChildren<Toggle>().FirstOrDefault(t => t.isOn).name;
-        DataManager.Instance.Log(logKey, value);
+            DataManager.Instance.Log(logKey, value);
+        }
     }
 
     public void OnPreferenceContinueButtonPressed()

@@ -231,7 +231,12 @@ public class ExperimentManager : MonoBehaviour
             roundCounter += condition.NumberOfTrials;
         }
 
-        return string.Join(" > ", conditionRanges);
+        return string.Join(" -> ", conditionRanges);
+    }
+
+    public List<Condition> GetOrderedConditions()
+    {
+        return _orderedConditions;
     }
 
     public T[] ShuffleArray<T>(T[] array)
