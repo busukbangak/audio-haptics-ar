@@ -105,6 +105,8 @@ public class ExperimentManager : MonoBehaviour
     public void EndTrial()
     {
         OnTrialEnd?.Invoke(_currentTrialIndex);
+        DataManager.Instance.Log($"trialEndTimestamp_{GetCurrentConditionStringIndex()}_{GetCurrentTrialStringIndex()}", System.DateTime.Now.ToString("o"));
+
 
         _currentTrialIndex++;
 
@@ -113,7 +115,6 @@ public class ExperimentManager : MonoBehaviour
         if (_currentTrialIndex >= condition.NumberOfTrials)
         {
             OnConditionEnd?.Invoke(condition.Name); // Current condition ended
-            DataManager.Instance.Log($"trialEndTimestamp_{GetCurrentConditionStringIndex()}_{GetCurrentTrialStringIndex()}", System.DateTime.Now.ToString("o"));
 
             _currentTrialIndex = 0; // Reset for next condition
             _currentConditionIndex++; // Move to next condition
